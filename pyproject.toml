@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "deep-study"
-version = "1.0.1"
+version = "1.0.2"
 description = "Deep Study - Dataset Overview and Feature Analysis for Data Science"
 readme = "README.md"
 authors = [
