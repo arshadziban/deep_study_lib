@@ -7,12 +7,6 @@ import os
 import base64
 from io import BytesIO
 import matplotlib
-# Only set backend if not already configured (e.g., in Jupyter notebooks)
-if matplotlib.get_backend() == 'agg' or not matplotlib.is_interactive():
-    try:
-        matplotlib.use('Agg')
-    except ValueError:
-        pass  # Backend already set, ignore
 import matplotlib.pyplot as plt
 from jinja2 import Environment, FileSystemLoader
 
