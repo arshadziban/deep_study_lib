@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Case Study - {{ target }}</title>
+    <style>
+        :root {
+            --primary-color: #6475C3;
+            --primary-dark: #4f5fa3;
+            --bg-white: #ffffff;
+            --bg-light: #fafafa;
+            --text-dark: #212121;
+            --text-muted: #757575;
+            --border: #e0e0e0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+        
+        .report-wrapper {
+            max-height: 800px;
+            overflow-y: auto;
+            background: #ffffff;
+            border: 1px solid var(--border);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 50px;
+            background: #ffffff;
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        header h1 {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+        
+        header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        
+        header p strong {
+            color: var(--primary-color);
+            font-style: normal;
+        }
+        
+        /* Summary Table */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        
+        .summary-table th,
+        .summary-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        
+        .summary-table th {
+            background: var(--bg-light);
+            font-weight: bold;
+            color: var(--text-dark);
+            width: 25%;
+        }
+        
+        .summary-table td {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+        
+        /* Section */
+        section {
+            margin-bottom: 40px;
+        }
+        
+        section h2 {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--text-dark);
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        section h2 span {
+            color: var(--primary-color);
+        }
+        
+        /* Charts */
+        .charts-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .chart-box {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid var(--border);
+            background: var(--bg-light);
+        }
+        
+        .chart-box img {
+            max-width: 100%;
+        }
+        
+        /* Correlation Table */
+        .correlation-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        
+        .correlation-table th,
+        .correlation-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        
+        .correlation-table th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: bold;
+            text-transform: capitalize;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+        }
+        
+        .correlation-table tbody tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        .correlation-table .score {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+        
+        .strength-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+        }
+        
+        .strength-badge.strong { 
+            background: #e8eaff; 
+            color: #6475C3; 
+        }
+        .strength-badge.moderate { 
+            background: #fff9c4; 
+            color: #f57f17; 
+        }
+        .strength-badge.weak { 
+            background: #bbdefb; 
+            color: #0d47a1; 
+        }
+        .strength-badge.very-weak { 
+            background: #eeeeee; 
+            color: #616161; 
+        }
+        
+        /* Feature Profiles */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        .feature-card {
+            border: 1px solid var(--border);
+            background: var(--bg-white);
+        }
+        
+        .feature-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .feature-header h3 {
+            font-size: 13px;
+            font-weight: bold;
+            margin: 0;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+        }
+        
+        .feature-header .badge {
+            font-size: 10px;
+            background: rgba(255,255,255,0.25);
+            padding: 3px 10px;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+        }
+        
+        .feature-body {
+            padding: 16px;
+        }
+        
+        .feature-stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .feature-stats-table td {
+            padding: 6px 10px;
+            border: 1px solid var(--border);
+        }
+        
+        .feature-stats-table td:first-child {
+            background: var(--bg-light);
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: capitalize;
+            font-size: 11px;
+            letter-spacing: 0.2px;
+            width: 40%;
+        }
+        
+        .feature-stats-table td:last-child {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .feature-dist {
+            text-align: center;
+            margin-top: 12px;
+        }
+        
+        .feature-dist img {
+            max-width: 100%;
+            border: 1px solid var(--border);
+        }
+        
+        /* Top Values */
+        .top-values {
+            margin-top: 16px;
+        }
+        
+        .top-values h4 {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .top-values-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        
+        .top-values-table th,
+        .top-values-table td {
+            padding: 6px 10px;
+            text-align: left;
+            border: 1px solid var(--border);
+        }
+        
+        .top-values-table th {
+            background: var(--bg-light);
+            font-weight: bold;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        
+        .top-values-table td:last-child {
+            text-align: right;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0 10px;
+            margin-top: 20px;
+            border-top: 2px solid var(--primary-color);
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+        
+        footer strong {
+            color: var(--primary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .features-grid,
+            .charts-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="report-wrapper">
+    <div class="container">
+        <header>
+            <h1>Case Study: Dataset Overview</h1>
+            <p>Target Variable: <strong>{{ target }}</strong></p>
+        </header>
+        
+        <section>
+            <h2><span>1.</span> Dataset Summary</h2>
+            <table class="summary-table">
+                <tr>
+                    <th>Target Variable</th>
+                    <td>{{ target }}</td>
+                    <th>Target Type</th>
+                    <td>{{ target_type|capitalize }}</td>
+                </tr>
+                <tr>
+                    <th>Total Observations</th>
+                    <td>{{ rows }}</td>
+                    <th>Total Features</th>
+                    <td>{{ cols }}</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <h2><span>2.</span> Feature Overview with Target Variable</h2>
+            <table class="correlation-table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Feature Name</th>
+                        <th>Correlation Score</th>
+                        <th>Strength</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in correlation_summary %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ item.feature }}</td>
+                        <td class="score">{{ "%.4f"|format(item.correlation) }}</td>
+                        <td>
+                            <span class="strength-badge {% if item.strength == 'Strong' %}strong{% elif item.strength == 'Moderate' %}moderate{% elif item.strength == 'Weak' %}weak{% else %}very-weak{% endif %}">
+                                {{ item.strength }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        
+        <section>
+            <h2><span>3.</span> Individual Feature Profiles</h2>
+            <div class="features-grid">
+                {% for profile in feature_profiles %}
+                <div class="feature-card">
+                    <div class="feature-header">
+                        <h3>{{ profile.name }}</h3>
+                        <span class="badge">{{ profile.type }}</span>
+                    </div>
+                    <div class="feature-body">
+                        <table class="feature-stats-table">
+                            <tr>
+                                <td>Distinct Values</td>
+                                <td>{{ profile.distinct }} ({{ profile.distinct_pct }}%)</td>
+                            </tr>
+                            <tr>
+                                <td>Missing Values</td>
+                                <td>{{ profile.missing }} ({{ profile.missing_pct }}%)</td>
+                            </tr>
+                            <tr>
+                                <td>Memory Usage</td>
+                                <td>{{ profile.memory_kb }} KiB</td>
+                            </tr>
+                            {% if profile.type == 'Numeric' %}
+                            <tr>
+                                <td>Mean</td>
+                                <td>{{ profile.mean }}</td>
+                            </tr>
+                            <tr>
+                                <td>Range</td>
+                                <td>{{ profile.min }} — {{ profile.max }}</td>
+                            </tr>
+                            {% endif %}
+                        </table>
+                        
+                        {% if profile.dist_plot %}
+                        <div class="feature-dist">
+                            <img src="{{ profile.dist_plot }}" alt="{{ profile.name }} Distribution">
+                        </div>
+                        {% endif %}
+                        
+                        {% if profile.type == 'Categorical' and profile.top_values %}
+                        <div class="top-values">
+                            <h4>Value Distribution</h4>
+                            <table class="top-values-table">
+                                <thead>
+                                    <tr>
+                                        <th>Value</th>
+                                        <th>Count</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for val in profile.top_values[:5] %}
+                                    <tr>
+                                        <td>{{ val.value }}</td>
+                                        <td>{{ val.count }}</td>
+                                        <td>{{ val.pct }}%</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        
+        <footer>
+            Created by <strong>Shah Md. Arshad Rahman Ziban</strong>
+        </footer>
+    </div>
+</div>
+</body>
+</html>
