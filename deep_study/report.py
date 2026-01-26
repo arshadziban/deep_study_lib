@@ -160,56 +160,6 @@ class Report:
         # Return None for categorical features (no bar chart)
         return None
 
-    def save_html(self, filename="report.html"):
-        """
-        Save analysis report as HTML file.
-        
-        Parameters
-        ----------
-        filename : str
-            Output filename (default: 'report.html')
-        """
-        # Generate correlation plot
-        corr_plot = self._plot_bar(
-            self.correlations,
-            f"Feature Correlation with {self.target_name}",
-            color='#2ecc71'
-        )
-        
-        # Generate importance plot
-        imp_plot = self._plot_bar(
-            self.importance,
-            f"Feature Importance (Random Forest)",
-            color='#e74c3c'
-        )
-        
-        # Generate distribution plots for each feature
-        for profile in self.feature_profiles:
-            profile["dist_plot"] = self._plot_feature_distribution(profile)
-        
-        # Load and render template
-        template_dir = os.path.join(os.path.dirname(__file__), "templates")
-        env = Environment(loader=FileSystemLoader(template_dir))
-        template = env.get_template("report.html")
-        
-        html = template.render(
-            target=self.target_name,
-            target_type=self.target,
-            rows=self.df.shape[0],
-            cols=self.df.shape[1],
-            correlations=list(self.correlations.items()),
-            corr_plot=corr_plot,
-            importance_plot=imp_plot,
-            feature_profiles=self.feature_profiles,
-            correlation_summary=self.correlation_summary
-        )
-        
-        with open(filename, "w", encoding="utf-8") as f:
-            f.write(html)
-        
-        print(f"✅ Report saved to: {filename}")
-        return filename
-    
     def _render_html(self):
         """Generate HTML content for the report."""
         # Generate correlation plot
@@ -275,18 +225,3 @@ class Report:
             if profile["name"] == feature_name:
                 return profile
         return None
-    
-    def summary(self):
-        """Print a summary of the analysis."""
-        print(f"\n{'='*60}")
-        print(f"  AutoCorr Analysis Summary")
-        print(f"{'='*60}")
-        print(f"  Target: {self.target_name} ({self.target})")
-        print(f"  Dataset: {self.df.shape[0]} rows × {self.df.shape[1]} columns")
-        print(f"\n  Top 5 Correlated Features:")
-        for i, (feat, score) in enumerate(list(self.correlations.items())[:5], 1):
-            print(f"    {i}. {feat}: {score:.4f}")
-        print(f"\n  Top 5 Important Features (ML):")
-        for i, (feat, score) in enumerate(list(self.importance.items())[:5], 1):
-            print(f"    {i}. {feat}: {score:.4f}")
-        print(f"{'='*60}\n")

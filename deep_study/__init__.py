@@ -9,10 +9,10 @@ Example:
     >>> from deep_study import Analyzer
     >>> analyzer = Analyzer(df, target="target_column")
     >>> report = analyzer.run()
-    >>> report.save_html("deep_study_report.html")
+    >>> report  # Show output
 """
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 __author__ = "Shah Md. Arshad Rahman Ziban"
 
 from .analyzer import Analyzer

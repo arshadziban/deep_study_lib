@@ -33,7 +33,7 @@ class Analyzer:
     -------
     >>> analyzer = Analyzer(df, target="PHQ_class")
     >>> report = analyzer.run()
-    >>> report.save_html("my_report.html")
+    >>> report  # Show output
     """
     
     def __init__(self, data, target):
@@ -81,7 +81,7 @@ class Analyzer:
             self.df, self.target, correlations
         )
         
-        return Report(
+        report = Report(
             df=self.df,
             raw_df=self.raw_df,
             correlations=correlations,
@@ -91,3 +91,5 @@ class Analyzer:
             feature_profiles=feature_profiles,
             correlation_summary=correlation_summary
         )
+        
+        return report

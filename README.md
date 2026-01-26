@@ -41,14 +41,8 @@ analyzer = Analyzer(df, target="target_column")
 # Run analysis
 report = analyzer.run()
 
-# Display in Jupyter notebook (automatically renders HTML)
+# Show output
 report
-
-# Or save HTML report to file
-report.save_html("deep_study_report.html")
-
-# Print summary to console
-report.summary()
 ```
 
 ## Report Contents
@@ -95,8 +89,6 @@ analyzer = Analyzer(data, target)
 ### Report
 
 **Methods:**
-- `save_html(filename)`: Save report to HTML file
-- `summary()`: Print analysis summary to console
 - `get_top_features(n)`: Get top N important features
 - `get_feature_profile(name)`: Get profile for specific feature
 
@@ -113,8 +105,8 @@ df = pd.read_csv("your_data.csv")
 analyzer = Analyzer(df, target="outcome")
 report = analyzer.run()
 
-# View in notebook or save
-report.save_html("analysis_report.html")
+# Show output
+report
 ```
 
 ## Requirements
