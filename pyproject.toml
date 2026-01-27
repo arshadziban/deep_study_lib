@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deep-study"
+version = "1.0.5"
+description = "Deep Study - Dataset Overview and Feature Analysis for Data Science"
+readme = "README.md"
+authors = [
+    {name = "Shah Md. Arshad Rahman Ziban", email = "arshadziban031201@gmail.com"}
+]
+maintainers = [
+    {name = "Shah Md. Arshad Rahman Ziban", email = "arshadziban031201@gmail.com"}
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Scientific/Engineering :: Visualization",
+]
+keywords = [
+    "data-analysis",
+    "dataset-overview",
+    "feature-profiling",
+    "feature-importance",
+    "machine-learning",
+    "pandas",
+    "eda",
+    "exploratory-data-analysis",
+    "data-science",
+    "jupyter",
+]
+dependencies = [
+    "pandas>=1.3.0",
+    "numpy>=1.20.0",
+    "scikit-learn>=1.0.0",
+    "matplotlib>=3.4.0",
+    "jinja2>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0.0",
+    "pytest-cov>=2.0.0",
+    "black>=21.0.0",
+    "flake8>=3.9.0",
+    "twine>=4.0.0",
+    "build>=0.7.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/arshadziban/deep_study_lib"
+Documentation = "https://github.com/arshadziban/deep_study_lib#readme"
+Repository = "https://github.com/arshadziban/deep_study_lib"
+Issues = "https://github.com/arshadziban/deep_study_lib/issues"
+Changelog = "https://github.com/arshadziban/deep_study_lib/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+packages = ["deep_study"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+deep_study = ["templates/*.html"]
