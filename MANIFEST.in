@@ -1,4 +1,0 @@
-# MANIFEST.in
-include README.md
-include pyproject.toml
-recursive-include deep_study/templates *

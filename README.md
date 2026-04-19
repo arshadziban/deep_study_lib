@@ -54,12 +54,7 @@ The generated HTML report includes:
 - Target variable information
 - Overall dataset statistics
 
-### 2. Feature Overview with Target Variable
-- All features with their types and statistics
-- Relationship indicators with target variable
-- Missing value analysis
-
-### 3. Individual Feature Profiles
+### 2. Individual Feature Profiles
 For each feature in your dataset:
 - **Type**: Numeric, Categorical, or DateTime
 - **Distinct Values**: Count and percentage

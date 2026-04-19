@@ -361,35 +361,7 @@
         </section>
         
         <section>
-            <h2><span>2.</span> Feature Overview with Target Variable</h2>
-            <table class="correlation-table">
-                <thead>
-                    <tr>
-                        <th>No.</th>
-                        <th>Feature Name</th>
-                        <th>Correlation Score</th>
-                        <th>Strength</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for item in correlation_summary %}
-                    <tr>
-                        <td>{{ loop.index }}</td>
-                        <td>{{ item.feature }}</td>
-                        <td class="score">{{ "%.4f"|format(item.correlation) }}</td>
-                        <td>
-                            <span class="strength-badge {% if item.strength == 'Strong' %}strong{% elif item.strength == 'Moderate' %}moderate{% elif item.strength == 'Weak' %}weak{% else %}very-weak{% endif %}">
-                                {{ item.strength }}
-                            </span>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </section>
-        
-        <section>
-            <h2><span>3.</span> Individual Feature Profiles</h2>
+            <h2><span>2.</span> Individual Feature Profiles</h2>
             <div class="features-grid">
                 {% for profile in feature_profiles %}
                 <div class="feature-card">

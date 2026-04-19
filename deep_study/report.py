@@ -31,12 +31,10 @@ class Report:
         Name of target column
     feature_profiles : list
         List of feature profile dictionaries
-    correlation_summary : list
-        List of correlation summaries with target
     """
     
     def __init__(self, df, raw_df, correlations, importance, target, 
-                 target_name, feature_profiles, correlation_summary):
+                 target_name, feature_profiles):
         self.df = df
         self.raw_df = raw_df
         self.correlations = correlations
@@ -44,7 +42,6 @@ class Report:
         self.target = target
         self.target_name = target_name
         self.feature_profiles = feature_profiles
-        self.correlation_summary = correlation_summary
 
     def _plot_to_base64(self, fig):
         """Convert matplotlib figure to base64 string."""
@@ -194,8 +191,7 @@ class Report:
             correlations=list(self.correlations.items()),
             corr_plot=corr_plot,
             importance_plot=imp_plot,
-            feature_profiles=self.feature_profiles,
-            correlation_summary=self.correlation_summary
+            feature_profiles=self.feature_profiles
         )
     
     def _repr_html_(self):

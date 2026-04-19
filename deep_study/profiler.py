@@ -128,37 +128,3 @@ def profile_dataframe(df):
         profiles.append(profile_feature(df[col], col))
     return profiles
 
-
-def profile_correlations_with_target(df, target, correlations):
-    """
-    Create correlation summary with target for all features.
-    Returns list of dicts with feature name, type, and correlation score.
-    """
-    results = []
-    for col in df.columns:
-        if col == target:
-            continue
-        
-        corr_score = correlations.get(col, 0)
-        
-        # Determine correlation strength
-        abs_corr = abs(corr_score)
-        if abs_corr >= 0.5:
-            strength = "Strong"
-        elif abs_corr >= 0.3:
-            strength = "Moderate"
-        elif abs_corr >= 0.1:
-            strength = "Weak"
-        else:
-            strength = "Very Weak"
-        
-        results.append({
-            "feature": col,
-            "type": str(df[col].dtype),
-            "correlation": round(corr_score, 4),
-            "strength": strength
-        })
-    
-    # Sort by absolute correlation value
-    results.sort(key=lambda x: abs(x["correlation"]), reverse=True)
-    return results

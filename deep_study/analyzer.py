@@ -14,7 +14,7 @@ from .correlation import (
     detect_target_type
 )
 from .analysis import feature_importance
-from .profiler import profile_dataframe, profile_correlations_with_target
+from .profiler import profile_dataframe
 from .report import Report
 
 
@@ -76,11 +76,6 @@ class Analyzer:
             self.df, self.target, target_type
         )
         
-        # Create correlation summary with target
-        correlation_summary = profile_correlations_with_target(
-            self.df, self.target, correlations
-        )
-        
         report = Report(
             df=self.df,
             raw_df=self.raw_df,
@@ -88,8 +83,7 @@ class Analyzer:
             importance=importance,
             target=target_type,
             target_name=self.target,
-            feature_profiles=feature_profiles,
-            correlation_summary=correlation_summary
+            feature_profiles=feature_profiles
         )
         
         return report
