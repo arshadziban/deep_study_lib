@@ -10,7 +10,7 @@ with open("README.md", "r", encoding="utf-8") as f:
 
 setup(
     name="deep-study",
-    version="1.0.4",
+    version="1.0.6",
     author="Shah Md. Arshad Rahman Ziban",
     author_email="arshadziban031201@gmail.com",
     description="Deep Study - Dataset Overview and Feature Analysis",
